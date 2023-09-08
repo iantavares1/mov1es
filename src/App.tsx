@@ -1,10 +1,12 @@
-import { ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './styles/theme'
+import { Home } from './features/home/Home'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <h1>Hello World</h1>
+      <CssBaseline />
+      <Home />
     </ThemeProvider>
   )
 }
