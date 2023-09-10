@@ -10,4 +10,7 @@ export const theme = createTheme({
       paper: '#0a0329',
     },
   },
+  typography: {
+    fontFamily: 'Inter',
+  },
 })
