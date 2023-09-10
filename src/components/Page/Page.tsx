@@ -1,5 +1,6 @@
-import { Container } from '@mui/material'
-import { TopBar } from '../../features/topbar/TopBar'
+import { TOPBAR_HEIGHT, TopBar } from './components/TopBar/TopBar'
+import { SearchProvider } from './contexts/SearchContext'
+import { PageContent } from './components/PageContent/PageContent'
 
 type PageProps = {
   hasTopBar?: boolean
@@ -8,9 +9,11 @@ type PageProps = {
 
 export const Page = ({ hasTopBar = true, children }: PageProps) => {
   return (
-    <>
+    <SearchProvider>
       {hasTopBar && <TopBar />}
-      <Container sx={{ mt: hasTopBar ? 10 : 0 }}>{children}</Container>
-    </>
+      <PageContent sx={{ marginTop: hasTopBar ? TOPBAR_HEIGHT : 0 }}>
+        {children}
+      </PageContent>
+    </SearchProvider>
   )
 }
