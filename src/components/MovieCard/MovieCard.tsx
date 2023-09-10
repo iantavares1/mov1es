@@ -7,14 +7,27 @@ type MovieCardProps = {
 
 export const MovieCard = ({ title, imageUrl }: MovieCardProps) => {
   return (
-    <Box>
+    <Box width={200}>
       <img
-        width={300}
+        width={200}
+        height={300}
         src={imageUrl}
         alt={title}
-        style={{ borderRadius: 10 }}
+        style={{
+          borderRadius: 10,
+        }}
       />
-      <Typography variant="h3">{title}</Typography>
+      <Typography
+        variant="h6"
+        fontWeight={600}
+        sx={{
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {title}
+      </Typography>
     </Box>
   )
 }
