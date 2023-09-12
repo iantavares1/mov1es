@@ -1,4 +1,4 @@
-import { Page, MoviesRow } from '../../components'
+import { Page, MoviesRow } from '@/components'
 
 export const Home = () => {
   return (

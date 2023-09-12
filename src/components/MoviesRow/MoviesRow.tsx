@@ -1,8 +1,8 @@
 import { useMoviesRow } from './hooks/useMoviesRow'
-import { MovieList } from '../../types/MovieList'
+import { MovieList } from '@/types/MovieList'
 import { Box } from '@mui/material'
 import { MovieCard } from '..'
-import { getImage } from '../../services/api'
+import { getImage } from '@/services/api'
 
 type MoviesRowProps = {
   list: MovieList

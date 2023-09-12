@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MovieList } from '../types/MovieList'
+import { MovieList } from '@/types/MovieList'
 
 const apiReadToken = import.meta.env.VITE_API_READ_TOKEN
 

@@ -1,6 +1,6 @@
-import { Logo } from '../../../../assets/Logo'
+import { Logo } from '@/assets/Logo'
 import { Box, Divider, Typography, css, styled } from '@mui/material'
-import { TMDBLogo } from '../../../../assets/TMDBLogo'
+import { TMDBLogo } from '@/assets/TMDBLogo'
 
 const FooterStyled = styled(Box)(
   ({ theme }) => css`

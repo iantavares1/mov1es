@@ -1,7 +1,7 @@
 import { useSearch } from '../../contexts/SearchContext'
 import { TopBarStyled } from './TopBar.styles'
 import { Search } from './Search/Search'
-import { Logo } from '../../../../assets/Logo'
+import { Logo } from '@/assets/Logo'
 
 export const TOPBAR_HEIGHT = '70px'
 
