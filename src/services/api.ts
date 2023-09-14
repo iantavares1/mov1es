@@ -25,8 +25,8 @@ const callAPI = async (url: string, additionalParams?: object) => {
   }
 }
 
-export const getImage = (posterPath: string) =>
-  `https://image.tmdb.org/t/p/w500/${posterPath}`
+export const getImage = (imgPath: string) =>
+  `https://image.tmdb.org/t/p/original/${imgPath}`
 
 export const getMovies = async (list: MovieList = 'popular', page?: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${list}`, { page })
