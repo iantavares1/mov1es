@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Box, Typography, useTheme } from '@mui/material'
+import { Box, Skeleton, styled } from '@mui/material'
 import { MovieWithPosterUrl } from '@/types/MovieWithPosterUrl'
 
-type PosterProps = { movies: MovieWithPosterUrl[] }
+const BoxStyled = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: theme.size(550),
+  margin: '0 auto',
+  borderRadius: theme.size(10),
+}))
 
-export const Posters = ({ movies }: PosterProps) => {
-  const theme = useTheme()
+type PostersProps = { movies: MovieWithPosterUrl[] }
+
+export const Posters = ({ movies }: PostersProps) => {
   const [movieId, setMovieId] = useState(0)
 
   useEffect(() => {
@@ -18,16 +24,16 @@ export const Posters = ({ movies }: PosterProps) => {
     return () => clearInterval(posterLoop)
   }, [movies.length])
 
-  if (movies.length < 1) return <Typography variant="h6">Loading...</Typography>
+  if (movies.length < 1)
+    return (
+      <BoxStyled>
+        <Skeleton variant="rounded" height={'100%'} />
+      </BoxStyled>
+    )
 
   return (
-    <Box
-      key={movies[movieId].id}
+    <BoxStyled
       sx={{
-        width: '100%',
-        height: theme.size(550),
-        margin: '0 auto',
-        borderRadius: theme.size(10),
         background: `url(${movies[movieId].poster_url}) no-repeat center / cover`,
       }}
     />
