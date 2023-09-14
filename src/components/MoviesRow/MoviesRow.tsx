@@ -12,12 +12,13 @@ export const MoviesRow = ({ list }: MoviesRowProps) => {
   const { movies } = useMoviesRow(list)
 
   return (
-    <Box display={'flex'} gap={3}>
+    <Box display={'flex'} gap={4}>
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}
           title={movie.title}
           imageUrl={getImage(movie.poster_path)}
+          voteAverage={movie.vote_average}
         />
       ))}
     </Box>
