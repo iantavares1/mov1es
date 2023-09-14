@@ -1,18 +1,19 @@
 import { styled } from '@mui/material'
 
 const PageContentStyled = styled('main')(({ theme }) => ({
-  paddingBottom: theme.spacing(12),
+  margin: `0 ${theme.size(100)}`,
+  paddingBottom: theme.size(50),
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(10),
+  gap: theme.size(50),
   overflow: 'hidden',
 }))
 
 type PageContentProps = {
   children: React.ReactNode
-  sx: React.CSSProperties
+  style: React.CSSProperties
 }
 
-export const PageContent = ({ children, sx }: PageContentProps) => {
-  return <PageContentStyled sx={sx}>{children}</PageContentStyled>
+export const PageContent = ({ children, style }: PageContentProps) => {
+  return <PageContentStyled style={style}>{children}</PageContentStyled>
 }
