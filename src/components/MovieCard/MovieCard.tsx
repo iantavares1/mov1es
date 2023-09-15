@@ -9,7 +9,15 @@ type MovieCardProps = {
 
 export const MovieCard = ({ title, imageUrl, voteAverage }: MovieCardProps) => {
   return (
-    <Box width={260}>
+    <Box
+      width={270}
+      sx={{
+        cursor: 'pointer',
+        transition: 'all 0.15s',
+        transform: 'scale(0.95)',
+        '&:hover': { transform: 'scale(1)' },
+      }}
+    >
       <img
         width={270}
         height={380}
