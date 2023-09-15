@@ -11,7 +11,7 @@ const TopBarStyled = styled(Box)(({ theme }) => ({
   left: 0,
   zIndex: 3,
   height: TOPBAR_HEIGHT,
-  width: '100vw',
+  width: '100%',
   padding: `0 ${theme.size(100)}`,
   background: theme.palette.background.default,
   display: 'flex',

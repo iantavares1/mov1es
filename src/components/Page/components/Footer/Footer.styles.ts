@@ -2,7 +2,6 @@ import { Box, css, styled } from '@mui/material'
 
 export const FooterWrapper = styled(Box)(
   ({ theme }) => css`
-    width: 100vw;
     padding: 0 ${theme.size(100)};
   `,
 )
