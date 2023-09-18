@@ -31,5 +31,5 @@ export const getImage = (imgPath: string) =>
 export const getMovies = async (list: MovieList = 'popular', page?: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${list}`, { page })
 
-export const searchMovie = async (movieId: number) =>
+export const getMovieDetails = async (movieId: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${movieId}`)
