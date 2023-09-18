@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
 import { Box, Skeleton, styled } from '@mui/material'
 import { MovieWithPosterUrl } from '@/types/MovieWithPosterUrl'
+
+import { Swiper } from '@/components'
+import { SwiperSlide } from 'swiper/react'
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -12,18 +14,6 @@ const BoxStyled = styled(Box)(({ theme }) => ({
 type PostersProps = { movies: MovieWithPosterUrl[] }
 
 export const Posters = ({ movies }: PostersProps) => {
-  const [movieId, setMovieId] = useState(0)
-
-  useEffect(() => {
-    const posterLoop = setInterval(() => {
-      setMovieId((previous) =>
-        previous === movies.length - 1 ? 0 : previous + 1,
-      )
-    }, 6000)
-
-    return () => clearInterval(posterLoop)
-  }, [movies.length])
-
   if (movies.length < 1)
     return (
       <BoxStyled>
@@ -32,10 +22,23 @@ export const Posters = ({ movies }: PostersProps) => {
     )
 
   return (
-    <BoxStyled
-      sx={{
-        background: `url(${movies[movieId].poster_url}) no-repeat center / cover`,
+    <Swiper
+      settings={{
+        autoplay: { delay: 6000 },
+        speed: 1000,
+        loop: true,
       }}
-    />
+    >
+      {movies.map((movie) => (
+        <SwiperSlide key={movie.id}>
+          <BoxStyled
+            sx={{
+              cursor: 'pointer',
+              background: `url(${movie.poster_url}) no-repeat center / cover`,
+            }}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   )
 }
