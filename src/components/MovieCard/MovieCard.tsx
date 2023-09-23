@@ -1,15 +1,27 @@
+import { useNavigate } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 import { Star } from '@mui/icons-material'
 
 type MovieCardProps = {
-  title: string
+  id: number
   imageUrl: string
+  title: string
   voteAverage: number
 }
 
-export const MovieCard = ({ title, imageUrl, voteAverage }: MovieCardProps) => {
+export const MovieCard = ({
+  id,
+  title,
+  imageUrl,
+  voteAverage,
+}: MovieCardProps) => {
+  const navigate = useNavigate()
+
   return (
     <Box
+      onClick={() => {
+        navigate(`/details/${id}`)
+      }}
       width={270}
       sx={{
         cursor: 'pointer',
