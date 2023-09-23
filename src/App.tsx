@@ -1,12 +1,13 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './styles/theme'
-import { Home } from './features/home/Home'
+import { router } from './router'
+import { RouterProvider } from 'react-router-dom'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Home />
+      <RouterProvider router={router} />
     </ThemeProvider>
   )
 }
