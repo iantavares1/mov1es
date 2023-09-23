@@ -1,7 +1,7 @@
 import { useMoviesRow } from './hooks/useMoviesRow'
 import { Box, Skeleton, Typography } from '@mui/material'
 import { MovieCard, Swiper } from '..'
-import { MovieList } from '@/types'
+import { Movie, MovieList } from '@/types'
 import { getImage } from '@/services/api'
 
 import { SwiperSlide } from 'swiper/react'
@@ -10,7 +10,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 type MoviesRowProps = {
-  list: MovieList
+  list: MovieList | Movie[]
   title?: string
 }
 
@@ -36,15 +36,18 @@ export const MoviesRow = ({ list, title }: MoviesRowProps) => {
           slidesPerGroup: 2,
         }}
       >
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <MovieCard
-              title={movie.title}
-              imageUrl={getImage(movie.poster_path)}
-              voteAverage={movie.vote_average}
-            />
-          </SwiperSlide>
-        ))}
+        {movies
+          .filter((movie) => movie.poster_path)
+          .map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <MovieCard
+                id={movie.id}
+                title={movie.title}
+                imageUrl={getImage(movie.poster_path)}
+                voteAverage={movie.vote_average}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </Box>
   )
