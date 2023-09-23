@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getImage, getMovies } from '@/services/api'
-import { MovieWithPosterUrl } from '@/types/MovieWithPosterUrl'
-import { Movie } from '@/types/Movie'
+import { MovieWithPosterUrl, Movie } from '@/types'
 
 export const useHome = () => {
   const [movies, setMovies] = useState<MovieWithPosterUrl[]>([])
@@ -21,6 +20,7 @@ export const useHome = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await getMovies('popular')
+
       const shuffledMovies = shuffleArray(response.results)
 
       const moviesArray: MovieWithPosterUrl[] = shuffledMovies

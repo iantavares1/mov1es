@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 import { Box, Skeleton, styled } from '@mui/material'
-import { MovieWithPosterUrl } from '@/types/MovieWithPosterUrl'
+import { MovieWithPosterUrl } from '@/types'
 
 import { Swiper } from '@/components'
 import { SwiperSlide } from 'swiper/react'
@@ -14,6 +15,8 @@ const BoxStyled = styled(Box)(({ theme }) => ({
 type PostersProps = { movies: MovieWithPosterUrl[] }
 
 export const Posters = ({ movies }: PostersProps) => {
+  const navigate = useNavigate()
+
   if (movies.length < 1)
     return (
       <BoxStyled>
@@ -30,7 +33,10 @@ export const Posters = ({ movies }: PostersProps) => {
       }}
     >
       {movies.map((movie) => (
-        <SwiperSlide key={movie.id}>
+        <SwiperSlide
+          key={movie.id}
+          onClick={() => navigate(`/details/${movie.id}`)}
+        >
           <BoxStyled
             sx={{
               cursor: 'pointer',
