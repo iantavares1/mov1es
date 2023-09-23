@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import { FooterWrapper, FooterStyled } from './Footer.styles'
 import { Box, Divider, Typography } from '@mui/material'
 import { Logo } from '@/assets/Logo'
 import { TMDBLogo } from '@/assets/TMDBLogo'
 
 export const Footer = () => {
+  const navigate = useNavigate()
+
   return (
     <FooterWrapper component={'footer'}>
       <Divider sx={{ background: '#fff', opacity: 0.2 }} />
       <FooterStyled>
-        <Logo />
+        <Logo onClick={() => navigate('/')} />
         <Box display={'flex'} gap={2} alignItems={'center'}>
           <a
             target="_blank"
