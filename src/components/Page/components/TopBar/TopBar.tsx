@@ -1,4 +1,5 @@
 import { useSearch } from '../../contexts/SearchContext'
+import { useNavigate } from 'react-router-dom'
 import { Box, styled } from '@mui/material'
 import { Search } from './Search/Search'
 import { Logo } from '@/assets/Logo'
@@ -20,10 +21,12 @@ const TopBarStyled = styled(Box)(({ theme }) => ({
 }))
 
 export const TopBar = () => {
+  const navigate = useNavigate()
   const { searchValue, handleSearch } = useSearch()
+
   return (
     <TopBarStyled>
-      <Logo hasText />
+      <Logo hasText onClick={() => navigate('/')} />
       <Search value={searchValue} onChange={handleSearch} />
     </TopBarStyled>
   )
