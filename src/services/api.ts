@@ -37,6 +37,3 @@ export const getMovieDetails = async (movieId: number) =>
 
 export const getMovieCredits = async (movieId: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${movieId}/credits`)
-
-export const getMovieRecommendations = async (movieId: number) =>
-  callAPI(`https://api.themoviedb.org/3/movie/${movieId}/recommendations`)
