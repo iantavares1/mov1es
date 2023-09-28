@@ -12,7 +12,12 @@ export const Page = ({ hasTopBar = true }: PageProps) => {
   return (
     <SearchProvider>
       {hasTopBar && <TopBar />}
-      <PageContent style={{ marginTop: hasTopBar ? TOPBAR_HEIGHT : 0 }}>
+      <PageContent
+        style={{
+          minHeight: '80vh',
+          marginTop: hasTopBar ? TOPBAR_HEIGHT : 0,
+        }}
+      >
         <Outlet />
       </PageContent>
       <Footer />

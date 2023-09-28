@@ -27,7 +27,7 @@ const callAPI = async (url: string, additionalParams?: object) => {
 }
 
 export const getImage = (imgPath: string) =>
-  `https://image.tmdb.org/t/p/original/${imgPath}`
+  `https://image.tmdb.org/t/p/original${imgPath}`
 
 export const getMovies = async (list: MovieList = 'popular', page?: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${list}`, { page })
@@ -37,3 +37,6 @@ export const getMovieDetails = async (movieId: number) =>
 
 export const getMovieCredits = async (movieId: number) =>
   callAPI(`https://api.themoviedb.org/3/movie/${movieId}/credits`)
+
+export const searchMovie = async (query: string, page?: number) =>
+  callAPI('https://api.themoviedb.org/3/search/movie', { query, page })
