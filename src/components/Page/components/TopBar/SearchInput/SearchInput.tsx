@@ -1,4 +1,8 @@
-import { SearchIconWrapper, SearchStyled, StyledInput } from './Search.styles'
+import {
+  SearchIconWrapper,
+  SearchStyled,
+  StyledInput,
+} from './SearchInput.styles'
 import SearchIcon from '@mui/icons-material/Search'
 
 type SearchProps = {
@@ -6,13 +10,14 @@ type SearchProps = {
   onChange: (value: string) => void
 }
 
-export const Search = ({ value, onChange }: SearchProps) => {
+export const SearchInput = ({ value, onChange }: SearchProps) => {
   return (
     <SearchStyled>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInput
+        name="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search"
