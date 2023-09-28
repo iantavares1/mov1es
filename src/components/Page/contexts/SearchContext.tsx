@@ -1,4 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type SearchContextData = {
   searchValue: string
@@ -8,10 +9,12 @@ type SearchContextData = {
 const SearchContext = createContext({} as SearchContextData)
 
 export const SearchProvider = ({ children }: PropsWithChildren) => {
+  const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState('')
 
   const handleSearch = (value: string) => {
     setSearchValue(value)
+    navigate(value !== '' ? `/search/${value}` : '/')
   }
 
   return (
@@ -21,6 +24,6 @@ export const SearchProvider = ({ children }: PropsWithChildren) => {
   )
 }
 
-export const useSearch = () => {
+export const useSearchContext = () => {
   return useContext(SearchContext)
 }

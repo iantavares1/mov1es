@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useSearchContext } from '../../contexts/SearchContext'
 import { FooterWrapper, FooterStyled } from './Footer.styles'
 import { Box, Divider, Typography } from '@mui/material'
 import { Logo } from '@/assets/Logo'
@@ -6,12 +7,18 @@ import { TMDBLogo } from '@/assets/TMDBLogo'
 
 export const Footer = () => {
   const navigate = useNavigate()
+  const { handleSearch } = useSearchContext()
 
   return (
     <FooterWrapper component={'footer'}>
       <Divider sx={{ background: '#fff', opacity: 0.2 }} />
       <FooterStyled>
-        <Logo onClick={() => navigate('/')} />
+        <Logo
+          onClick={() => {
+            navigate('/')
+            handleSearch('')
+          }}
+        />
         <Box display={'flex'} gap={2} alignItems={'center'}>
           <a
             target="_blank"

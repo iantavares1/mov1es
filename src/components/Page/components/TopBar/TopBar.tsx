@@ -1,7 +1,7 @@
-import { useSearch } from '../../contexts/SearchContext'
+import { useSearchContext } from '../../contexts/SearchContext'
 import { useNavigate } from 'react-router-dom'
 import { Box, styled } from '@mui/material'
-import { Search } from './Search/Search'
+import { SearchInput } from './SearchInput/SearchInput'
 import { Logo } from '@/assets/Logo'
 
 export const TOPBAR_HEIGHT = '70px'
@@ -22,12 +22,18 @@ const TopBarStyled = styled(Box)(({ theme }) => ({
 
 export const TopBar = () => {
   const navigate = useNavigate()
-  const { searchValue, handleSearch } = useSearch()
+  const { searchValue, handleSearch } = useSearchContext()
 
   return (
     <TopBarStyled>
-      <Logo hasText onClick={() => navigate('/')} />
-      <Search value={searchValue} onChange={handleSearch} />
+      <Logo
+        hasText
+        onClick={() => {
+          navigate('/')
+          handleSearch('')
+        }}
+      />
+      <SearchInput value={searchValue} onChange={handleSearch} />
     </TopBarStyled>
   )
 }
