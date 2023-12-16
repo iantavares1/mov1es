@@ -3,13 +3,9 @@ import Link from "next/link"
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-between">
-      <Link href={"/"} className="flex gap-2">
-        <Image width={28} height={28} src="logo.svg" alt="logo" />
-      </Link>
-
+    <footer className="flex w-screen justify-end bg-primary p-3">
       <div className="flex items-center gap-2">
-        <span className="hidden text-sm sm:block ">
+        <span className="hidden text-sm sm:block">
           Este produto usa a API TMDB, mas não é endossado ou certificado pelo
           TMDB
         </span>
