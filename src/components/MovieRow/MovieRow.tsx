@@ -1,9 +1,9 @@
 "use client"
 
-import { Movie } from "@/types/Movie"
+import { useMovieRow } from "./hooks/useMovieRow"
 import { MovieCard } from "../MovieCard"
 import { NavigationButton } from "./components/NavigationButton"
-import { useMovieRow } from "./hooks/useMovieRow"
+import { Movie } from "@/types"
 
 export function MovieRow({
   movies,
@@ -22,7 +22,7 @@ export function MovieRow({
 
       <div
         ref={rowRef}
-        className="flex gap-3 overflow-y-hidden overflow-x-scroll md:overflow-x-hidden"
+        className="flex gap-2 overflow-y-hidden overflow-x-scroll md:overflow-x-hidden"
       >
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />

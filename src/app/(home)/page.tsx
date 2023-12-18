@@ -1,20 +1,25 @@
 import { Banner } from "@/components/Banner"
 import { MovieRow } from "@/components/MovieRow/MovieRow"
-import { Movie } from "@/types/Movie"
+import { callAPI } from "../../services/api"
+import {
+  NOW_PLAYING_MOVIES,
+  POPULAR_MOVIES,
+  TOP_RATED_MOVIES,
+} from "@/services/paths"
 import { shuffleArray } from "@/utils/shuffleArray"
-import { callAPI } from "../services/api"
+import { Movie } from "@/types"
 
 export default async function Home() {
-  const popularList: Movie[] = await callAPI(
-    `https://api.themoviedb.org/3/movie/popular`
+  const popularList: Movie[] = await callAPI(POPULAR_MOVIES).then(
+    (res) => res.results
   )
 
-  const nowPlayingList: Movie[] = await callAPI(
-    `https://api.themoviedb.org/3/movie/now_playing`
-  ).then((list) => shuffleArray(list))
+  const nowPlayingList: Movie[] = await callAPI(NOW_PLAYING_MOVIES)
+    .then((res) => res.results)
+    .then((list) => shuffleArray(list))
 
-  const topRatedList: Movie[] = await callAPI(
-    `https://api.themoviedb.org/3/movie/top_rated`
+  const topRatedList: Movie[] = await callAPI(TOP_RATED_MOVIES).then(
+    (res) => res.results
   )
 
   const poster = shuffleArray(popularList.slice(0, 6))[0]
