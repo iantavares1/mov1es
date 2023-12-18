@@ -16,8 +16,6 @@ export const Topbar = () => {
     >
       <Link href={"/"} className="flex items-center gap-1">
         <Logo />
-
-        <span className="hidden font-bold">Movies App</span>
       </Link>
 
       <Search />
