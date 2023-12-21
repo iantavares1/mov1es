@@ -1,9 +1,9 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Modal } from "@mui/material"
 import { Close, Search } from "@mui/icons-material"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 
 export function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -11,6 +11,7 @@ export function SearchBar() {
   const [searchValue, setSearchValue] = useState("")
 
   const router = useRouter()
+  const pathName = usePathname()
 
   const handleOpenModal = () => setShouldOpenModal(true)
   const handleCloseModal = () => setShouldOpenModal(false)
@@ -18,11 +19,16 @@ export function SearchBar() {
   const handleClearInput = () => {
     if (inputRef.current !== null) {
       inputRef.current.value = ""
-      handleCloseModal()
-      router.push(`/`)
+      setSearchValue("")
+      setSearchValue("")
     }
     setSearchValue("")
   }
+
+  useEffect(
+    () => setSearchValue((prev) => (pathName === "/" ? "" : prev)),
+    [pathName]
+  )
 
   return (
     <>
