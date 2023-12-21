@@ -10,5 +10,8 @@ export const MOVIE_DETAILS = (movieId: number) =>
 export const MOVIE_CREDITS = (movieId: number) =>
   `https://api.themoviedb.org/3/movie/${movieId}/credits`
 
-export const TMDB_IMAGE = (imagePath: string) =>
-  `https://image.tmdb.org/t/p/w500${imagePath}`
+export const TMDB_IMAGE = (imagePath: string, original?: boolean) =>
+  `https://image.tmdb.org/t/p/${original ? "original" : "w500"}${imagePath}`
+
+export const SEARCH_MOVIE = (query: string, page?: number) =>
+  `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page || 1}`
