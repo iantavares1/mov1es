@@ -4,12 +4,12 @@ import { Movie } from "@/types"
 
 export function Banner({ poster }: { poster: Movie }) {
   return (
-    <div className="mb-3">
+    <div className="mb-300">
       <Image
         alt={`poster de  ${poster.title}`}
-        src={TMDB_IMAGE(poster.backdrop_path)}
+        src={TMDB_IMAGE(poster.backdrop_path, true)}
         placeholder="blur"
-        blurDataURL={TMDB_IMAGE(poster.backdrop_path)}
+        blurDataURL={TMDB_IMAGE(poster.backdrop_path, true)}
         priority
         width={0}
         height={0}

@@ -28,7 +28,7 @@ export default async function Home() {
     <>
       <Banner poster={poster} />
 
-      <div className="flex flex-col gap-6 px-6">
+      <div className="gap-700 px-300 flex flex-col">
         <MovieRow title="Popular" movies={popularList} />
 
         <MovieRow title="Em alta" movies={nowPlayingList} />

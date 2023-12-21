@@ -18,11 +18,11 @@ export function MovieRow({
     <div className="relative w-full">
       <NavigationButton direction="left" onNavigation={handleRowNavigation} />
 
-      {title && <h1 className="mb-2">{title}</h1>}
+      {title && <h1 className="mb-100">{title}</h1>}
 
       <div
         ref={rowRef}
-        className="flex gap-2 overflow-y-hidden overflow-x-scroll md:overflow-x-hidden"
+        className="gap-200 flex overflow-y-hidden overflow-x-scroll md:overflow-x-hidden"
       >
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
