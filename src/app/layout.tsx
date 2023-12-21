@@ -4,6 +4,7 @@ import "./globals.css"
 
 import { Topbar } from "@/components/Topbar/Topbar"
 import { Footer } from "@/components/Footer"
+import { Providers } from "./Providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,13 +20,15 @@ export default function RootLayout({
   return (
     <html lang="pt-Br">
       <body className={inter.className}>
-        <div className="relative min-h-[100dvh] bg-primary text-onPrimary">
-          <Topbar />
+        <Providers>
+          <div className="relative min-h-[100dvh] bg-primary text-onPrimary">
+            <Topbar />
 
-          <main>{children}</main>
+            <main className="min-h-[inherit]">{children}</main>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   )

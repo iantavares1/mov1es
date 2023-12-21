@@ -4,15 +4,19 @@ import Image from "next/image"
 import noImage from "../../public/no-image.svg"
 import { useState } from "react"
 import { MOVIE_DETAILS, TMDB_IMAGE } from "@/services/paths"
-import { useFetch } from "@/services/useFetch"
 import { Details } from "./Details"
 import { StarOutlined } from "@mui/icons-material"
 import { Movie, MovieDetails } from "@/types"
+import { useQuery } from "@tanstack/react-query"
+import { callAPI } from "@/services/api"
 
 export function MovieCard({ movie }: { movie: Movie }) {
   const [detailsIsOpen, setDetailsIsOpen] = useState(false)
 
-  const { data: details } = useFetch<MovieDetails>(MOVIE_DETAILS(movie.id))
+  const { data: details } = useQuery<MovieDetails>({
+    queryKey: ["details", movie.id],
+    queryFn: () => callAPI(MOVIE_DETAILS(movie.id)),
+  })
 
   const handleOpenDetails = () => setDetailsIsOpen(true)
   const handleCloseDetails = () => setDetailsIsOpen(false)

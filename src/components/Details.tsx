@@ -1,11 +1,12 @@
 import Image from "next/image"
 import noImage from "../../public/no-image.svg"
-import { useFetch } from "@/services/useFetch"
-import { MOVIE_CREDITS } from "@/services/paths"
-import { Avatar, CircularProgress, Modal, Typography } from "@mui/material"
+import { MOVIE_CREDITS, TMDB_IMAGE } from "@/services/paths"
+import { Avatar, CircularProgress, Modal } from "@mui/material"
 import { ArrowBack, Person } from "@mui/icons-material"
 import { formatDate } from "../utils/formatDate"
 import { CastData, CrewData, MovieDetails } from "@/types"
+import { useQuery } from "@tanstack/react-query"
+import { callAPI } from "@/services/api"
 
 export function Details({
   details,
@@ -16,10 +17,13 @@ export function Details({
   open: boolean
   onClose: () => void
 }) {
-  const { data, error, isLoading } = useFetch<{
+  const { data, error, isLoading } = useQuery<{
     crew: CrewData[]
     cast: CastData[]
-  }>(MOVIE_CREDITS(details?.id))
+  }>({
+    queryKey: ["credits", details?.id],
+    queryFn: () => callAPI(MOVIE_CREDITS(details?.id)),
+  })
 
   const crew = data?.crew
   const cast = data?.cast
@@ -34,7 +38,7 @@ export function Details({
       <>
         {isLoading && <CircularProgress className="text-onPrimary" />}
 
-        {error !== "" && <p>{error}</p>}
+        {error && error?.message !== "" && <p>{error.message}</p>}
 
         {data && !error && !isLoading && (
           <main className="min-h-full bg-black  bg-opacity-90 text-onPrimary">
@@ -45,26 +49,25 @@ export function Details({
               <ArrowBack className="text-onPrimary" />
             </button>
 
-            <div className="relative w-[inherit]">
+            <div>
               <Image
+                alt={`${details.id} image`}
                 src={
                   details.backdrop_path && details.backdrop_path !== ""
-                    ? `https://image.tmdb.org/t/p/w500${details.backdrop_path}`
+                    ? TMDB_IMAGE(details.backdrop_path, true)
                     : noImage
                 }
-                alt={`${details.id} image`}
                 priority
                 width={0}
                 height={0}
-                sizes="100"
+                sizes="100vw"
                 style={{
                   width: "100%",
-                  objectFit: "cover",
                 }}
               />
             </div>
 
-            <div className="flex flex-col gap-2 p-3">
+            <div className="flex flex-col gap-300 p-300">
               {crew && crew.length > 0 && (
                 <>
                   <h1 className="max-w-[20ch] text-lg">
@@ -74,11 +77,11 @@ export function Details({
 
                   <h6 className="text-xs">{details.tagline}</h6>
 
-                  <span className="flex gap-4">
+                  <span className="flex flex-wrap gap-300">
                     {details.genres.map((genre) => (
                       <button
                         key={genre.id}
-                        className="rounded-md bg-tertiary px-2 py-1 text-xs text-onTertiary"
+                        className="rounded-md bg-tertiary px-300 py-100 text-xs text-onTertiary"
                       >
                         {genre.name}
                       </button>
@@ -93,7 +96,7 @@ export function Details({
                     </>
                   )}
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-200">
                     <h2>Lançamento:</h2>
 
                     <h6 className="text-xs">
@@ -101,7 +104,7 @@ export function Details({
                     </h6>
                   </span>
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-100">
                     <h2>Duração:</h2>
 
                     <h6 className="text-xs">
@@ -112,7 +115,7 @@ export function Details({
                   </span>
 
                   {crew.find((person) => person.job === "Director") && (
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-100">
                       <h2>Diretor:</h2>
 
                       <h6 className="text-xs">
@@ -122,7 +125,7 @@ export function Details({
                   )}
 
                   {crew.find((person) => person.job === "Writer") && (
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-100">
                       <h2>Escritor:</h2>
 
                       <h6 className="text-xs">
