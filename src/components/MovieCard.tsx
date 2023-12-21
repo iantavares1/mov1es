@@ -36,6 +36,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
           width={0}
           height={0}
           sizes="100"
+          priority
           style={{
             width: "100%",
             height: "100%",

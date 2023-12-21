@@ -17,16 +17,16 @@ export default function Search({
   })
   const movies = data?.results
 
-  if (isLoading) return <div className="px-300 pt-1000">Loading...</div>
+  if (isLoading) return <div className="px-300 pt-[10dvh]">Loading...</div>
 
   if (!movies || movies.length < 1)
-    return <div className="px-300 pt-1000">Nenhum filme encontrado</div>
+    return <div className="px-300 pt-[10dvh]">Nenhum filme encontrado</div>
 
   return (
-    <div className="px-300 pt-1000">
+    <div className="px-300 pt-[10dvh]">
       <h1 className="mb-300">{`resultados de "${query}"`}</h1>
 
-      <div className="grid grid-cols-100 gap-200 ">
+      <div className="grid grid-cols-100 justify-items-center">
         {movies
           .filter((movie) => movie.poster_path && movie.backdrop_path)
           .map((movie) => (

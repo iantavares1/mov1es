@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React from "react"
+import logo from "../../public/logo.svg"
 
 export function Logo() {
   return (
@@ -7,7 +7,7 @@ export function Logo() {
       width={0}
       height={0}
       className="w-6"
-      src="logo.svg"
+      src={logo}
       alt="logo"
       priority
     />

@@ -21,10 +21,10 @@ export default function RootLayout({
     <html lang="pt-Br">
       <body className={inter.className}>
         <Providers>
-          <div className="relative min-h-[100dvh] bg-primary text-onPrimary">
+          <div className="relative bg-primary text-onPrimary">
             <Topbar />
 
-            <main className="min-h-[inherit]">{children}</main>
+            <main className="min-h-[92dvh] pb-[9dvh]">{children}</main>
 
             <Footer />
           </div>

@@ -18,7 +18,8 @@ export function SearchBar() {
   const handleClearInput = () => {
     if (inputRef.current !== null) {
       inputRef.current.value = ""
-      inputRef.current.focus()
+      handleCloseModal()
+      router.push(`/`)
     }
     setSearchValue("")
   }
@@ -43,9 +44,12 @@ export function SearchBar() {
                   const value = e.target.value
 
                   setSearchValue(value)
-                  value === ""
-                    ? router.push(`/`)
-                    : router.push(`/search/${value}`)
+                  if (value === "") {
+                    handleClearInput()
+                    return
+                  }
+
+                  router.push(`/search/${value}`)
                 }}
                 autoFocus
                 className="pl- w-full rounded-lg px-700 py-100 outline-none"

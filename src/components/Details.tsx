@@ -42,12 +42,11 @@ export function Details({
 
         {data && !error && !isLoading && (
           <main className="min-h-full bg-black  bg-opacity-90 text-onPrimary">
-            <button
-              onClick={onClose}
-              className="absolute left-1 top-1 z-50 rounded-full"
-            >
-              <ArrowBack className="text-onPrimary" />
-            </button>
+            <div className="absolute left-1 top-1 z-50 p-200">
+              <button onClick={onClose}>
+                <ArrowBack className="text-onPrimary" />
+              </button>
+            </div>
 
             <div>
               <Image
