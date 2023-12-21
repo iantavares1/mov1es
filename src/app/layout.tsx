@@ -24,7 +24,7 @@ export default function RootLayout({
           <div className="relative bg-primary text-onPrimary">
             <Topbar />
 
-            <main className="min-h-[92dvh] pb-[9dvh]">{children}</main>
+            <main id="main">{children}</main>
 
             <Footer />
           </div>
