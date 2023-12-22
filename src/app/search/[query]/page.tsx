@@ -6,6 +6,7 @@ import { MovieCard } from "@/components/MovieCard/MovieCard"
 import { callAPI } from "@/services/api"
 import { SEARCH_MOVIE } from "@/services/paths"
 import { Movie } from "@/types"
+import { useMediaQuery } from "@mui/material"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 
 export default function Search({
@@ -14,6 +15,14 @@ export default function Search({
   params: { query: string }
 }) {
   const [page, setPage] = useState(1)
+
+  const isDefaultBreakpoint = useMediaQuery("(max-width:419px)")
+  const isSmBreakpoint = useMediaQuery(
+    "(min-width:420px) and (max-width:639px)"
+  )
+  const isMdBreakpoint = useMediaQuery(
+    "(min-width:640px) and (max-width:859px)"
+  )
 
   const { data, isLoading } = useQuery<{
     results: Movie[]
@@ -55,7 +64,15 @@ export default function Search({
       {totalPages && totalPages > 1 && (
         <div className="flex w-full justify-center gap-100 pt-400">
           <button onClick={() => page > 1 && setPage((prev) => prev - 1)}>
-            <KeyboardArrowLeft className="lg:text-[44px]" />
+            <KeyboardArrowLeft
+              sx={{
+                fontSize: isDefaultBreakpoint
+                  ? 24
+                  : isSmBreakpoint || isMdBreakpoint
+                    ? 32
+                    : 44,
+              }}
+            />
           </button>
 
           <div className="overflow-x-scroll whitespace-nowrap md:overflow-hidden">
@@ -82,7 +99,15 @@ export default function Search({
               setPage((prev) => prev + 1)
             }
           >
-            <KeyboardArrowRight className="lg:text-[44px]" />
+            <KeyboardArrowRight
+              sx={{
+                fontSize: isDefaultBreakpoint
+                  ? 24
+                  : isSmBreakpoint || isMdBreakpoint
+                    ? 32
+                    : 44,
+              }}
+            />
           </button>
         </div>
       )}

@@ -3,11 +3,20 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import tmdbLogo from "@/publictmdb-logo.svg"
+import tmdbLogo from "@public/tmdb-logo.svg"
 import { KeyboardArrowUp } from "@mui/icons-material"
+import { useMediaQuery } from "@mui/material"
 
 export const Footer = () => {
   const [showBackTopButton, setShowBackTopButton] = useState(false)
+
+  const isDefaultBreakpoint = useMediaQuery("(max-width:419px)")
+  const isSmBreakpoint = useMediaQuery(
+    "(min-width:420px) and (max-width:639px)"
+  )
+  const isMdBreakpoint = useMediaQuery(
+    "(min-width:640px) and (max-width:859px)"
+  )
 
   const handleScroll = () =>
     setShowBackTopButton(
@@ -35,7 +44,15 @@ export const Footer = () => {
     >
       {showBackTopButton && (
         <button onClick={backToTop}>
-          <KeyboardArrowUp className="sm:text-[32px] lg:text-[44px]" />
+          <KeyboardArrowUp
+            sx={{
+              fontSize: isDefaultBreakpoint
+                ? 24
+                : isSmBreakpoint || isMdBreakpoint
+                  ? 32
+                  : 44,
+            }}
+          />
         </button>
       )}
 

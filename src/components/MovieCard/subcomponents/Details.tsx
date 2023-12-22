@@ -1,7 +1,9 @@
+"use client"
+
 import Image from "next/image"
-import noImage from "@/publicno-image.svg"
+import noImage from "@public/no-image.svg"
 import { MOVIE_CREDITS, TMDB_IMAGE } from "@/services/paths"
-import { Avatar, CircularProgress, Modal } from "@mui/material"
+import { Avatar, CircularProgress, Modal, useMediaQuery } from "@mui/material"
 import { ArrowBack, Person } from "@mui/icons-material"
 import { formatDate } from "@/utils/formatDate"
 import { CastData, CrewData, MovieDetails } from "@/types"
@@ -18,6 +20,14 @@ export function Details({
   open: boolean
   onClose: () => void
 }) {
+  const isDefaultBreakpoint = useMediaQuery("(max-width:419px)")
+  const isSmBreakpoint = useMediaQuery(
+    "(min-width:420px) and (max-width:639px)"
+  )
+  const isMdBreakpoint = useMediaQuery(
+    "(min-width:640px) and (max-width:859px)"
+  )
+
   const { data, error, isLoading } = useQuery<{
     crew: CrewData[]
     cast: CastData[]
@@ -51,7 +61,7 @@ export function Details({
                 </button>
               </div>
 
-              <div className="mx-auto overflow-hidden">
+              <div className="mx-auto overflow-hidden 2xl:rounded-b-2xl">
                 <Image
                   alt={`${details.id} image`}
                   src={
@@ -162,11 +172,48 @@ export function Details({
                             <Avatar
                               src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                               alt={person.name}
-                              className="h-[85px] w-[85px] sm:h-[120px] sm:w-[120px] lg:h-[160px] lg:w-[160px]"
+                              sx={{
+                                width: isDefaultBreakpoint
+                                  ? 85
+                                  : isSmBreakpoint || isMdBreakpoint
+                                    ? 120
+                                    : 160,
+                                height: isDefaultBreakpoint
+                                  ? 85
+                                  : isSmBreakpoint || isMdBreakpoint
+                                    ? 120
+                                    : 160,
+                              }}
                             />
                           ) : (
-                            <Avatar className="h-[85px] w-[85px] sm:h-[120px] sm:w-[120px] lg:h-[160px] lg:w-[160px]">
-                              <Person sx={{ fontSize: 70 }} />
+                            <Avatar
+                              sx={{
+                                width: isDefaultBreakpoint
+                                  ? 85
+                                  : isSmBreakpoint || isMdBreakpoint
+                                    ? 120
+                                    : 160,
+                                height: isDefaultBreakpoint
+                                  ? 85
+                                  : isSmBreakpoint || isMdBreakpoint
+                                    ? 120
+                                    : 160,
+                              }}
+                            >
+                              <Person
+                                sx={{
+                                  width: isDefaultBreakpoint
+                                    ? 70
+                                    : isSmBreakpoint || isMdBreakpoint
+                                      ? 90
+                                      : 110,
+                                  height: isDefaultBreakpoint
+                                    ? 70
+                                    : isSmBreakpoint || isMdBreakpoint
+                                      ? 90
+                                      : 110,
+                                }}
+                              />
                             </Avatar>
                           )}
 

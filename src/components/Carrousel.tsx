@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
+import { useMediaQuery } from "@mui/material"
 
 export function Carrousel({ children }: React.PropsWithChildren) {
   const rowRef = useRef<HTMLDivElement>(null)
@@ -82,6 +83,14 @@ function NavigationButton({
   hide?: boolean
   onNavigation: (direction: "left" | "right") => void
 }) {
+  const isDefaultBreakpoint = useMediaQuery("(max-width:419px)")
+  const isSmBreakpoint = useMediaQuery(
+    "(min-width:420px) and (max-width:639px)"
+  )
+  const isMdBreakpoint = useMediaQuery(
+    "(min-width:640px) and (max-width:859px)"
+  )
+
   return (
     <button
       onClick={() => onNavigation(direction)}
@@ -92,9 +101,25 @@ function NavigationButton({
       } rounded-full bg-tertiary p-0.5 lg:p-1.5`}
     >
       {direction === "left" ? (
-        <KeyboardArrowLeft className="lg:text-[32px]" />
+        <KeyboardArrowLeft
+          sx={{
+            fontSize: isDefaultBreakpoint
+              ? 24
+              : isSmBreakpoint || isMdBreakpoint
+                ? 30
+                : 36,
+          }}
+        />
       ) : (
-        <KeyboardArrowRight className="lg:text-[32px]" />
+        <KeyboardArrowRight
+          sx={{
+            fontSize: isDefaultBreakpoint
+              ? 24
+              : isSmBreakpoint || isMdBreakpoint
+                ? 30
+                : 36,
+          }}
+        />
       )}
     </button>
   )
