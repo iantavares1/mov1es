@@ -18,18 +18,23 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-Br">
-      <body className={inter.className}>
-        <Providers>
+    <html
+      lang="pt-Br"
+      className="scrollbar scrollbar-track-primary scrollbar-thumb-gray-800"
+    >
+      <Providers>
+        <body className={inter.className}>
           <div className="relative bg-primary text-onPrimary">
-            <Topbar />
+            <div className="relative mx-auto max-w-[1280px]">
+              <Topbar />
 
-            <main id="main">{children}</main>
+              <main id="main">{children}</main>
 
-            <Footer />
+              <Footer />
+            </div>
           </div>
-        </Providers>
-      </body>
+        </body>
+      </Providers>
     </html>
   )
 }

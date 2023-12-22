@@ -34,13 +34,13 @@ export function SearchBar() {
     <>
       {!shouldOpenModal ? (
         <button onClick={handleOpenModal}>
-          <Search />
+          <Search className="sm:text-[32px] lg:text-[44px]" />
         </button>
       ) : (
         <Modal open onClose={handleCloseModal} className="m-300">
-          <>
-            <div className="relative">
-              <Search className="absolute left-100 top-1/2 -translate-y-1/2 transform" />
+          <div className="mx-auto flex w-full max-w-[1280px] justify-end overflow-hidden pr-6">
+            <div className="relative w-full sm:w-[420px] lg:w-[500px]">
+              <Search className="absolute left-100 top-1/2 -translate-y-1/2 transform lg:text-[44px]" />
 
               <input
                 placeholder="Search"
@@ -58,7 +58,7 @@ export function SearchBar() {
                   router.push(`/search/${value}`)
                 }}
                 autoFocus
-                className="pl- w-full rounded-lg px-700 py-100 outline-none"
+                className="w-full rounded-lg px-700 py-100 outline-none lg:px-1000 lg:text-[24px]"
               />
 
               {searchValue !== "" && (
@@ -66,11 +66,11 @@ export function SearchBar() {
                   onClick={handleClearInput}
                   className="absolute right-100 top-1/2 -translate-y-1/2 transform"
                 >
-                  <Close />
+                  <Close className="lg:text-[44px]" />
                 </button>
               )}
             </div>
-          </>
+          </div>
         </Modal>
       )}
     </>

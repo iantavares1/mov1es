@@ -1,12 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { MovieCard } from "@/components/MovieCard"
+import { MovieCard } from "@/components/MovieCard/MovieCard"
 import { callAPI } from "@/services/api"
 import { SEARCH_MOVIE } from "@/services/paths"
 import { Movie } from "@/types"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
-import { useState } from "react"
 
 export default function Search({
   params: { query },
@@ -26,16 +26,25 @@ export default function Search({
   const movies = data?.results
   const totalPages = data?.total_pages
 
-  if (isLoading) return <div className="px-300 pt-[8dvh]">Loading...</div>
+  if (isLoading)
+    return (
+      <div className="px-300 pt-[8dvh] lg:px-700 lg:text-[30px] 2xl:px-0">
+        Loading...
+      </div>
+    )
 
   if (!movies || movies.length < 1)
-    return <div className="px-300 pt-[8dvh]">Nenhum filme encontrado</div>
+    return (
+      <div className="px-300 pt-[8dvh] lg:px-700 lg:text-[30px] 2xl:px-0">
+        Nenhum filme encontrado
+      </div>
+    )
 
   return (
-    <div className="px-300 pt-[8dvh]">
-      <h1 className="mb-300">{`resultados de "${query}"`}</h1>
+    <div className="px-300 pt-[8dvh] sm:px-500 lg:px-700 2xl:px-0">
+      <h1 className="mb-300 sm:text-[22px] lg:text-[30px]">{`resultados de "${query}"`}</h1>
 
-      <div className="grid grid-cols-100 justify-items-center gap-200">
+      <div className="grid max-w-[1280px] grid-cols-100 justify-items-center gap-200 sm:grid-cols-200 sm:gap-500 lg:grid-cols-300 lg:gap-1000 2xl:grid-cols-400 ">
         {movies
           .filter((movie) => movie.poster_path && movie.backdrop_path)
           .map((movie) => (
@@ -44,17 +53,17 @@ export default function Search({
       </div>
 
       {totalPages && totalPages > 1 && (
-        <div className="gap-100pt-400 flex w-full">
+        <div className="flex w-full justify-center gap-100 pt-400">
           <button onClick={() => page > 1 && setPage((prev) => prev - 1)}>
-            <KeyboardArrowLeft />
+            <KeyboardArrowLeft className="lg:text-[44px]" />
           </button>
 
-          <div className="overflow-x-scroll whitespace-nowrap">
+          <div className="overflow-x-scroll whitespace-nowrap md:overflow-hidden">
             {Array.from({ length: data.total_pages }, (_, index) => index)
               .slice(1, 11)
               .map((pageNumber) => (
                 <button
-                  className={`m-2 h-8 w-8 break-keep rounded-full border-2 border-solid border-onPrimary ${
+                  className={`m-2 h-8 w-8 break-keep rounded-full border-2 border-solid border-onPrimary lg:h-10 lg:w-10 ${
                     page === pageNumber && "bg-onPrimary text-primary"
                   }`}
                   key={pageNumber}
@@ -73,7 +82,7 @@ export default function Search({
               setPage((prev) => prev + 1)
             }
           >
-            <KeyboardArrowRight />
+            <KeyboardArrowRight className="lg:text-[44px]" />
           </button>
         </div>
       )}

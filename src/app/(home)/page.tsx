@@ -1,6 +1,5 @@
-import { Banner } from "@/components/Banner"
-import { MovieRow } from "@/components/MovieRow/MovieRow"
-import { callAPI } from "../../services/api"
+import { MovieRow } from "@/components/MovieRow"
+import { callAPI } from "@/services/api"
 import {
   NOW_PLAYING_MOVIES,
   POPULAR_MOVIES,
@@ -8,6 +7,7 @@ import {
 } from "@/services/paths"
 import { shuffleArray } from "@/utils/shuffleArray"
 import { Movie } from "@/types"
+import { Banner } from "./components/Banner"
 
 export default async function Home() {
   const popularList: Movie[] = await callAPI(POPULAR_MOVIES).then(
@@ -28,7 +28,7 @@ export default async function Home() {
     <>
       <Banner poster={poster} />
 
-      <div className="gap-700 px-300 flex flex-col">
+      <div className="flex flex-col gap-700 px-300 sm:px-500 2xl:px-0">
         <MovieRow title="Popular" movies={popularList} />
 
         <MovieRow title="Em alta" movies={nowPlayingList} />
