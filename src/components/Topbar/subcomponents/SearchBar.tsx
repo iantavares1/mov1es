@@ -54,7 +54,7 @@ export function SearchBar() {
         </button>
       ) : (
         <Modal open onClose={handleCloseModal} className="m-300">
-          <div className="mx-auto flex w-full max-w-[1280px] justify-end overflow-hidden pr-6">
+          <div className="mx-auto flex w-full max-w-[1280px] justify-end overflow-hidden 2xl:pr-6">
             <div className="relative w-full sm:w-[420px] lg:w-[500px]">
               <Search
                 className="absolute left-100 top-1/2 -translate-y-1/2 transform"
