@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Modal } from "@mui/material"
+import { Modal, useMediaQuery } from "@mui/material"
 import { Close, Search } from "@mui/icons-material"
 import { useRouter, usePathname } from "next/navigation"
 
@@ -9,6 +9,14 @@ export function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null)
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
   const [searchValue, setSearchValue] = useState("")
+
+  const isDefaultBreakpoint = useMediaQuery("(max-width:419px)")
+  const isSmBreakpoint = useMediaQuery(
+    "(min-width:420px) and (max-width:639px)"
+  )
+  const isMdBreakpoint = useMediaQuery(
+    "(min-width:640px) and (max-width:859px)"
+  )
 
   const router = useRouter()
   const pathName = usePathname()
@@ -34,13 +42,30 @@ export function SearchBar() {
     <>
       {!shouldOpenModal ? (
         <button onClick={handleOpenModal}>
-          <Search className="sm:text-[32px] lg:text-[44px]" />
+          <Search
+            sx={{
+              fontSize: isDefaultBreakpoint
+                ? 24
+                : isSmBreakpoint || isMdBreakpoint
+                  ? 32
+                  : 44,
+            }}
+          />
         </button>
       ) : (
         <Modal open onClose={handleCloseModal} className="m-300">
           <div className="mx-auto flex w-full max-w-[1280px] justify-end overflow-hidden pr-6">
             <div className="relative w-full sm:w-[420px] lg:w-[500px]">
-              <Search className="absolute left-100 top-1/2 -translate-y-1/2 transform lg:text-[44px]" />
+              <Search
+                className="absolute left-100 top-1/2 -translate-y-1/2 transform"
+                sx={{
+                  fontSize: isDefaultBreakpoint
+                    ? 24
+                    : isSmBreakpoint || isMdBreakpoint
+                      ? 32
+                      : 44,
+                }}
+              />
 
               <input
                 placeholder="Search"

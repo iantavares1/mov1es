@@ -49,7 +49,18 @@ export function Details({
         sx={{ overflowY: "scroll" }}
       >
         <div className="mx-auto max-w-[1280px]">
-          {isLoading && <CircularProgress className="text-onPrimary" />}
+          {isLoading && (
+            <CircularProgress
+              size={
+                isDefaultBreakpoint
+                  ? 24
+                  : isSmBreakpoint || isMdBreakpoint
+                    ? 32
+                    : 44
+              }
+              className="text-onPrimary"
+            />
+          )}
 
           {error && error?.message !== "" && <p>{error.message}</p>}
 
@@ -57,7 +68,16 @@ export function Details({
             <main className="relative  min-h-screen w-full bg-black bg-opacity-90 text-onPrimary">
               <div className="absolute left-1 top-1 z-50 p-200">
                 <button onClick={onClose}>
-                  <ArrowBack className="text-onPrimary lg:text-[44px]" />
+                  <ArrowBack
+                    sx={{
+                      fontSize: isDefaultBreakpoint
+                        ? 24
+                        : isSmBreakpoint || isMdBreakpoint
+                          ? 32
+                          : 44,
+                    }}
+                    className="text-onPrimary"
+                  />
                 </button>
               </div>
 
