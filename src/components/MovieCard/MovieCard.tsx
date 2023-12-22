@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import noImage from "@/publicno-image.svg"
+import noImage from "@public/no-image.svg"
 import { useState } from "react"
 import { MOVIE_DETAILS, TMDB_IMAGE } from "@/services/paths"
 import { StarOutlined } from "@mui/icons-material"
