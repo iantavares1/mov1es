@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "420px",
+        md: "640px",
+        lg: "860px",
+        xl: "1024px",
+        "2xl": "1280px",
+        "4xl": "1600px",
+        "6xl": "1920px",
+      },
       colors: {
         primary: "#001524",
         onPrimary: "#FFFFFF",
@@ -34,10 +43,13 @@ const config: Config = {
       },
       gridTemplateColumns: {
         100: "repeat(auto-fill, minmax(95px, 1fr))",
+        200: "repeat(auto-fill, minmax(130px, 1fr))",
+        300: "repeat(auto-fill, minmax(170px, 1fr))",
+        400: "repeat(auto-fill, minmax(200px, 1fr))",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 }
 
 export default config
