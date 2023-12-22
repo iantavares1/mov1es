@@ -12,6 +12,11 @@ export type CrewData = {
 
 export type CastData = Omit<CrewData, "job" | "department"> & {
   character: string
+  place_of_birth: string
+  birthday: string
+  deathday: null | string
+  biography: string
+  popularity: number
 }
 
 export type Movie = {
