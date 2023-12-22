@@ -45,7 +45,7 @@ export function Details({
         open={open}
         onClose={onClose}
         disableAutoFocus
-        className="scrollbar scrollbar-track-primary scrollbar-thumb-gray-800"
+        className="md:scrollbar md:scrollbar-track-primary md:scrollbar-thumb-gray-800"
         sx={{ overflowY: "scroll" }}
       >
         <div className="mx-auto max-w-[1280px]">
